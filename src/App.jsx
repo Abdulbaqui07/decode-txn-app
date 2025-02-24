@@ -1,33 +1,74 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {setContractName}  from './scripts/decodeLogs';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [ TxnLogs,  setTxnLogs ] = useState([]);
+  const [ hash,  setHash ] = useState('');
+  const [status, setStatus] = useState('tx');
+
+  const getData = (hash) => {
+    // let decodeData = await setContractName(hash)
+    setStatus('decoding')
+    setContractName(hash).then((decodeData) => {
+      console.log("result")
+      console.log(decodeData)
+      
+      setTxnLogs(decodeData)
+      setStatus('decoded')
+    })
+
+  }
+
+  const handleOnSubmit = (e) => {
+    console.log('in on submit')
+    e.preventDefault();
+    setTxnLogs([])
+
+    if(hash.length > 0){
+      console.log(hash);
+      getData(hash)
+
+      setHash("");
+    }
+  }
+  
+  const handleOnChange = (e) => {
+    console.log('in on change')
+    setHash(e.target.value);
+  }
+
+  // if(status == 'decoding'){
+  //   return(
+  //     <div>Hello</div>
+  //   )
+  // }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="App">
+      <div className='header-section'>
+        <h1>Decode Txn</h1>
+        <p className='note-para'>NOTE: Currenlty this app decodes only 1inch contracts transactions. Link to 1inch contract <a href='https://etherscan.io/address/0x1111111254eeb25477b68fb85ed929f73a960582' target="_blank">LINK</a></p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className='formArea'>
+        <form onSubmit={handleOnSubmit}>
+          <div>Tx Hash : <input placeholder='Hash..' className='hashBox' value={hash} onChange={handleOnChange}/></div>
+        </form>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div className='resultArea'>
+          { status == 'decoding' ?  (console.log("in decoding"), <div>Decoding transaction received</div> ):(
+            <div className='txnArea'>
+            <div>Result</div>
+            {TxnLogs && TxnLogs.length > 0 && TxnLogs.map((log) =>
+              <Card data={log} />,
+              // console.log("log ",log),
+            )}
+          </div>
+          )}
+      </div>
+      <Footer/>
+    </div>
     </>
   )
 }
