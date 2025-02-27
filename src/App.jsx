@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {setContractName}  from './scripts/decodeLogs';
-import './App.css'
+import './App.css';
+import Footer from './Components/Footer';
 
 function App() {
   const [ TxnLogs,  setTxnLogs ] = useState([]);
