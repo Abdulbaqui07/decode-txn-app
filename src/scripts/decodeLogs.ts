@@ -203,6 +203,6 @@ export async function setContractName(txHash: string): Promise<any[]> {
 }
 
 // Example usage (Uncomment to test)
-setContractName('0x24c1b2b6a4d1bc7f41dbba71a584ac2a4f123b32686364b9fc111b9b207215e2')
-    .then(result => console.log(result))
-    .catch(error => console.error(error));
+// setContractName('0x24c1b2b6a4d1bc7f41dbba71a584ac2a4f123b32686364b9fc111b9b207215e2')
+//     .then(result => console.log(result))
+//     .catch(error => console.error(error));
