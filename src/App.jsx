@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {setContractName}  from './scripts/decodeLogs';
 import './App.css';
+import Card from './Components/Card';
 import Footer from './components/Footer';
 
 function App() {
