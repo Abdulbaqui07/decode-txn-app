@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import {setContractName}  from './scripts/decodeLogs';
 import './App.css';
+import {setContractName}  from './scripts/decodeLogs';
 import Card from './components/Card';
 import Footer from './components/Footer';
 

@@ -1,7 +1,10 @@
 import Web3 from 'web3';
 import contractABI from '../lib/contractABI.json';
 
-const web3 = new Web3("https://mainnet.infura.io/v3/a6cb9ec392304a8990d3dbd8502adbf6");
+// const web3 = new Web3("https://mainnet.infura.io/v3/a6cb9ec392304a8990d3dbd8502adbf6");
+const web3 = new Web3(new Web3.providers.HttpProvider(
+    "https://mainnet.infura.io/v3/a6cb9ec392304a8990d3dbd8502adbf6"
+));
 
 /**
  * Retrieves and decodes transaction logs.
