@@ -4,12 +4,10 @@ import { readFile } from 'fs/promises';
 // Define a type for the contract ABI (adjust as needed)
 type ContractABI = any; // Replace `any` with a more specific type if available
 
-const contractABI: ContractABI = JSON.parse(
-    await readFile(new URL('../lib/contractABI.json', import.meta.url), 'utf-8')
-);
+import contractABI from '../lib/contractABI.json';
 
 const web3 = new Web3(new Web3.providers.HttpProvider(
-    "https://mainnet.infura.io/v3/585178b4d49e49c59162eee163ccade8"
+    "https://mainnet.infura.io/v3/643a8e6ed0f4465d868201019a5b520f"
 ));
 
 /**

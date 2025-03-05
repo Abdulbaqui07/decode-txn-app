@@ -5,8 +5,10 @@ import '../styles/Card.css';
 const Card = (props) => {
 
     let stringValueArray = props.data?.value
-        ? JSON.stringify(props.data.value).slice(1,-1).replace(/"/g,' ').split(",")
-        : [];
+    ? JSON.stringify(props.data.value, (key, value) => 
+        typeof value === 'bigint' ? value.toString() : value
+    ).slice(1,-1).replace(/"/g,' ').split(",")
+    : [];
     return (
         <div className='Card'>
             <div className='contract-section'>
